@@ -31,4 +31,4 @@ ENV PORT=8080
 EXPOSE ${PORT}
 
 # Start PocketBase
-CMD ["/pb/pocketbase", "serve", "--http=0.0.0.0:${PORT}", "--encryptionEnv=${PB_ENCRYPTION_KEY}"]
+CMD ["sh", "-c", "/pb/pocketbase serve --http=0.0.0.0:${PORT} --encryptionEnv=${PB_ENCRYPTION_KEY}"]
