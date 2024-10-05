@@ -16,7 +16,7 @@ RUN apk --update --no-cache add ca-certificates unzip \
 RUN apk add --no-cache wget && rm -rf /var/cache/apk/*
 
 # download and unzip PocketBase
-ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_${TARGETOS}_${TARGETARCH}.zip /tmp/pb.zip
+ADD https://github.com/pocketbase/pocketbase/releases/download/v${VERSION}/pocketbase_${VERSION}_${TARGETOS}_${TARGETARCH}.zip /tmp/pb.zip
 RUN unzip /tmp/pb.zip -d /pb/
 
 # uncomment to copy the local pb_migrations dir into the image
@@ -31,4 +31,4 @@ ENV PORT=8080
 EXPOSE ${PORT}
 
 # Start PocketBase
-CMD ["/pb/pocketbase", "serve", "--http=0.0.0.0:${PORT}"]
+CMD ["/pb/pocketbase", "serve", "--http=0.0.0.0:${PORT}", "--encryptionEnv=${PB_ENCRYPTION_KEY}"]
